@@ -11,3 +11,4 @@ class Semester:
                     f'A subject called {new_subject.name} already exists!')
 
         self.subjects.append(new_subject)
+

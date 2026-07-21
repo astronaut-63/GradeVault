@@ -13,4 +13,3 @@ class Subject:
         self.name = name
         self.credits = credits
         self.obtained_marks = obtained_marks
-
