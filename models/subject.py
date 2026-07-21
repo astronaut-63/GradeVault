@@ -14,4 +14,3 @@ class Subject:
         self.credits = credits
         self.obtained_marks = obtained_marks
 
-        print('Subject created!')
