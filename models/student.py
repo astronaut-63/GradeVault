@@ -11,3 +11,13 @@ class Student:
                 raise ValueError('This semester already exists!')
             
         self.semesters.append(new_semester)
+
+    def find_semester(self, number):
+        for semester in self.semesters:
+            found = False
+            if semester.number == number:
+                found = True
+                return semester
+            if not found:
+                raise ValueError('Semester not found!')
+    
