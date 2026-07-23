@@ -31,3 +31,9 @@ class Semester:
             raise ValueError(
                 'Cannot calculate SGPA for a semester with no subjects.')
         return round(self.get_total_weighted_points()/self.get_total_credits(), 2)
+
+    def find_subject(self, name):
+        for subject in self.subjects:
+            if subject.name == name:
+                return subject
+        raise ValueError('Subject not found.')
