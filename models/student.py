@@ -14,12 +14,9 @@ class Student:
 
     def find_semester(self, number):
         for semester in self.semesters:
-            found = False
             if semester.number == number:
-                found = True
                 return semester
-            if not found:
-                raise ValueError('Semester not found!')
+        raise ValueError('Semester not found!')
 
     def calculate_cgpa(self):
         numerator = 0
