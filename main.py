@@ -132,7 +132,7 @@ def menu():
                     raise ValueError('Semester not found.')
                 try:
                     semester_number = int(input('Enter the semester number: '))
-                    student.remove_semester(semester_to_remove)
+                    student.remove_semester(semester_number)
                     print(f'Semester {semester_number} removed successfully!')
                 except ValueError as e:
                     print(e)
