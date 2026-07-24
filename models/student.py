@@ -29,3 +29,7 @@ class Student:
             raise ValueError(
                 'Cannot calculate CGPA because no subjects have been added.')
         return numerator/denominator
+
+    def remove_semester(self, number):
+        semester_to_remove = self.find_semester(number)
+        self.semesters.remove(semester_to_remove)
