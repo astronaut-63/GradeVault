@@ -9,7 +9,7 @@ def menu():
     student = None
 
     while True:
-        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Exit')
+        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Delete Subject\n8. Delete Semester\n9. Exit')
         try:
             choice = int(input('Enter your choice: '))
             if choice == 1:
@@ -112,6 +112,32 @@ def menu():
                     print(e)
 
             elif choice == 7:
+                if student is None:
+                    raise ValueError('No student found.')
+                elif not student.semesters:
+                    raise ValueError('Semester not found.')
+                try:
+                    semester_number = int(input('Enter the semester number: '))
+                    selected_semester = student.find_semester(semester_number)
+                    subject_name = input('Enter the subject name: ')
+                    selected_semester.remove_subject(subject_name)
+                    print('Subject removed successfully!')
+                except ValueError as e:
+                    print(e)
+
+            elif choice == 8:
+                if student is None:
+                    raise ValueError('No student found.')
+                elif not student.semesters:
+                    raise ValueError('Semester not found.')
+                try:
+                    semester_number = int(input('Enter the semester number: '))
+                    student.remove_semester(semester_to_remove)
+                    print(f'Semester {semester_number} removed successfully!')
+                except ValueError as e:
+                    print(e)
+
+            elif choice == 9:
                 print('Thank you!')
                 break
             else:
