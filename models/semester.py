@@ -37,3 +37,7 @@ class Semester:
             if subject.name == name:
                 return subject
         raise ValueError('Subject not found.')
+
+    def remove_subject(self, name):
+        subject_to_remove = self.find_subject(name)
+        self.subjects.remove(subject_to_remove)
