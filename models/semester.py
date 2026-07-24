@@ -1,3 +1,6 @@
+from subject import Subject
+
+
 class Semester:
 
     def __init__(self, number):
@@ -41,3 +44,20 @@ class Semester:
     def remove_subject(self, name):
         subject_to_remove = self.find_subject(name)
         self.subjects.remove(subject_to_remove)
+
+    def to_dict(self):
+        subject_list = []
+        for subject in self.subjects:
+            subject_list.append(subject.to_dict())
+        return {
+            "number": self.number,
+            "subjects": subject_list
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        semester = cls(data["number"])
+        for subject_data in data["subjects"]:
+            subject = Subject.from_dict(subject_data)
+            semester.add_subject(subject)
+        return semester

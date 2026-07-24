@@ -60,3 +60,19 @@ class Subject:
     def update_obtained_marks(self, new_obtained_marks):
         self._validate_obtained_marks(new_obtained_marks)
         self.obtained_marks = new_obtained_marks
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "credits": self.credits,
+            "obtained_marks": self.obtained_marks
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        subject = cls(
+            data["name"],
+            data["credits"],
+            data["obtained_marks"]
+        )
+        return subject
