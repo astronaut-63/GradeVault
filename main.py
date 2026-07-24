@@ -9,7 +9,7 @@ def menu():
     student = None
 
     while True:
-        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Exit')
+        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Exit')
         try:
             choice = int(input('Enter your choice: '))
             if choice == 1:
@@ -77,6 +77,41 @@ def menu():
                         f'{subject.name:<30}{subject.credits:<6}{subject.obtained_marks:<8}{subject.get_grade():<8}{subject.get_grade_point():<4}')
                 print(LINE)
             elif choice == 6:
+                if student is None:
+                    raise ValueError('No student found.')
+                elif not student.semesters:
+                    raise ValueError('Semester not found.')
+                try:
+                    semester_number = int(input('Enter Semester Number: '))
+                    selected_semester = student.find_semester(semester_number)
+                    subject_name = input('Enter Subject Name: ')
+                    subject_to_edit = selected_semester.find_subject(
+                        subject_name)
+                    print('1. Edit Name\n2. Edit Credits\n3. Edit Obtained Marks')
+                    edit_choice = int(input('Enter your choice: '))
+                    if edit_choice == 1:
+                        new_name = input('Enter new name: ')
+                        subject_to_edit.update_name(new_name)
+                        print('Name edited successfully.')
+                        print(f'New Name: {subject_to_edit.name}')
+                    elif edit_choice == 2:
+                        new_credits = int(input('Enter new credits: '))
+                        subject_to_edit.update_credits(new_credits)
+                        print('Credits edited successfully.')
+                        print(f'New Credits: {subject_to_edit.credits}')
+                    elif edit_choice == 3:
+                        new_obtained_marks = int(
+                            input('Enter new obtained marks: '))
+                        subject_to_edit.update_obtained_marks(
+                            new_obtained_marks)
+                        print('Obtained marks edited successfully.')
+                        print(f'New Marks: {subject_to_edit.obtained_marks}')
+                    else:
+                        raise ValueError('Invalid choice.')
+                except ValueError as e:
+                    print(e)
+
+            elif choice == 7:
                 print('Thank you!')
                 break
             else:
