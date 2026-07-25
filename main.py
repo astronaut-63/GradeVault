@@ -3,7 +3,7 @@ from models.semester import Semester
 from models.student import Student
 from storage import load_student, save_student
 
-LINE = '-'*40
+LINE = '-'*60
 
 
 def menu():
