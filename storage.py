@@ -15,5 +15,5 @@ def load_student():
         with open('gradevault.json', 'r') as file:
             data = json.load(file)
             return Student.from_dict(data)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         return None
