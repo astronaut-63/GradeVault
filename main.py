@@ -1,12 +1,13 @@
 from models.subject import Subject
 from models.semester import Semester
 from models.student import Student
+from storage import load_student, save_student
 
 LINE = '-'*40
 
 
 def menu():
-    student = None
+    student = load_student()
 
     while True:
         print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Delete Subject\n8. Delete Semester\n9. Exit')
@@ -16,6 +17,7 @@ def menu():
                 name = input('Enter the name: ')
                 roll_number = input('Enter the roll number: ')
                 student = Student(name, roll_number)
+                save_student(student)
                 print('Student created!')
             elif choice == 2:
                 try:
@@ -25,6 +27,7 @@ def menu():
                     number = int(input('Enter the semester number: '))
                     new_semester = Semester(number)
                     student.add_semester(new_semester)
+                    save_student(student)
                     print("Semester added!")
                 except ValueError as e:
                     print(e)
@@ -42,6 +45,7 @@ def menu():
                     semester_number = int(input('Enter the semester: '))
                     selected_semester = student.find_semester(semester_number)
                     selected_semester.add_subject(subject)
+                    save_student(student)
                     print('Subject added!')
                 except ValueError as e:
                     print(e)
@@ -92,11 +96,13 @@ def menu():
                     if edit_choice == 1:
                         new_name = input('Enter new name: ')
                         subject_to_edit.update_name(new_name)
+                        save_student(student)
                         print('Name edited successfully.')
                         print(f'New Name: {subject_to_edit.name}')
                     elif edit_choice == 2:
                         new_credits = int(input('Enter new credits: '))
                         subject_to_edit.update_credits(new_credits)
+                        save_student(student)
                         print('Credits edited successfully.')
                         print(f'New Credits: {subject_to_edit.credits}')
                     elif edit_choice == 3:
@@ -104,6 +110,7 @@ def menu():
                             input('Enter new obtained marks: '))
                         subject_to_edit.update_obtained_marks(
                             new_obtained_marks)
+                        save_student(student)
                         print('Obtained marks edited successfully.')
                         print(f'New Marks: {subject_to_edit.obtained_marks}')
                     else:
@@ -121,6 +128,7 @@ def menu():
                     selected_semester = student.find_semester(semester_number)
                     subject_name = input('Enter the subject name: ')
                     selected_semester.remove_subject(subject_name)
+                    save_student(student)
                     print('Subject removed successfully!')
                 except ValueError as e:
                     print(e)
@@ -133,6 +141,7 @@ def menu():
                 try:
                     semester_number = int(input('Enter the semester number: '))
                     student.remove_semester(semester_number)
+                    save_student(student)
                     print(f'Semester {semester_number} removed successfully!')
                 except ValueError as e:
                     print(e)

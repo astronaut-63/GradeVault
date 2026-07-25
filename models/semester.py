@@ -1,4 +1,4 @@
-from subject import Subject
+from models.subject import Subject
 
 
 class Semester:

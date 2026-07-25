@@ -31,4 +31,4 @@ dist/
 *.egg-info/
 
 # Data
-data/grades.json
+gradevault.json

@@ -1,4 +1,4 @@
-from semester import Semester
+from models.semester import Semester
 
 
 class Student:

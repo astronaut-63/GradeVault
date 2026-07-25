@@ -70,9 +70,8 @@ class Subject:
 
     @classmethod
     def from_dict(cls, data):
-        subject = cls(
+        return cls(
             data["name"],
             data["credits"],
             data["obtained_marks"]
         )
-        return subject
