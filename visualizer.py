@@ -49,15 +49,28 @@ def plot_grade_distribution(data):
     plt.tight_layout()
     plt.show()
 
+def plot_credits_by_semester(data):
+    plt.figure(figsize=(8, 5))
+
+    data.plot(kind="bar")
+
+    plt.xlabel("Semester")
+    plt.ylabel("Total Credits")
+    plt.title("Credits per Semester")
+
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
     from storage import load_student
-    from analytics import get_grade_distribution
+    from analytics import get_credits_by_semesters
 
     student = load_student()
 
     if student:
-        data = get_grade_distribution(student)
+        data = get_credits_by_semesters(student)
         print(data)
-        plot_grade_distribution(data)
+        plot_credits_by_semester(data)
     else:
         print("No student found.")
