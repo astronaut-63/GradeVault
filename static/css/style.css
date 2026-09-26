@@ -98,6 +98,9 @@ body {
 
     border: 1px solid #e5e7eb;
     border-radius: 12px;
+
+    text-decoration: none;
+    color: inherit;
 }
 
 .semester-card h3 {
@@ -121,4 +124,74 @@ body {
 
 .semester-sgpa strong {
     font-size: 24px;
+}
+
+.semester_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.semester_header p {
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+.semester_summary {
+    display: flex;
+    gap: 40px;
+}
+
+.semester_summary div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.semester_summary span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.semester_summary strong {
+    font-size: 26px;
+}
+
+.subjects_section {
+    margin-bottom: 30px;
+}
+
+.subjects_section h2 {
+    margin-bottom: 15px;
+}
+
+.subject-table {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.subject_row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.subject_row:last-child {
+    border-bottom: none;
+}
+
+.subject_header {
+    font-weight: bold;
+    background: #f9fafb;
+}
+
+.back_link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #374151
 }

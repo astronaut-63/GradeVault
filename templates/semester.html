@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Semester {{ semester.number }} | GradeVault{% endblock %}
+{% block content %}
+
+<div class="semester-header">
+    <div>
+        <h2>Semester {{ semester.number }}</h2>
+        <p>{{ semester.subjects|length }} subjects</p>
+    </div>
+
+    <div class="semester-summary">
+        <div>
+            <span>SGPA</span>
+            <strong>{{ "%.2f"|format(semester.calculate_sgpa()) }}</strong>
+        </div>
+
+        <div>
+            <span>Credits</span>
+            <strong>{{ semester.get_total_credits() }}</strong>
+        </div>
+    </div>
+</div>
+
+<section class="subjects-section">
+    <h2>Subjects</h2>
+    <div class="subject-table">
+        <div class="subject-row subject-header">
+            <span>Subject</span>
+            <span>Credits</span>
+            <span>Marks</span>
+            <span>Grade</span>
+            <span>Grade Point</span>
+        </div>
+
+        {% for subject in semester.subjects %}
+            <div class="subject-row">
+                <span>{{ subject.name }}</span>
+                <span>{{ subject.credits }}</span>
+                <span>{{ subject.obtained_marks }}</span>
+                <span>{{ subject.get_grade() }}</span>
+                <span>{{ subject.get_grade_point() }}</span>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+<a href="/" class="back-link">← Back to Dashboard</a>
+
+{% endblock %}

@@ -31,7 +31,7 @@
 
             <div class="semester-grid">
                 {% for semester in student.semesters %}
-                    <div class="semester-card">
+                    <a href="/semester/{{ semester.number }}" class="semester-card">
                         <div>
                             <h3>Semester {{ semester.number }}</h3>
 
