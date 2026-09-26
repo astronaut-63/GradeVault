@@ -3,20 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        
         <title>{% block title %}GradeVault{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
 
     <body>
 
-        <nav>
+        <nav class="navbar">
             <h1>GradeVault</h1>
 
-            <a href="/">Dashboard</a>
-            <a href="/analytics">Analytics</a>
+            <div class="nav-links">
+                <a href="/">Dashboard</a>
+                <a href="/analytics">Analytics</a>
+            </div>
         </nav>
 
-        <main>
+        <main class="container">
             {% block content %}
             {% endblock %}
         </main>

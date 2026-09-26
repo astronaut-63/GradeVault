@@ -22,6 +22,36 @@
             </div>
 
         </section>
+
+        <section class="semester-section">
+
+            <div class="section-header">
+                <h2>Your Semesters</h2>
+            </div>
+
+            <div class="semester-grid">
+                {% for semester in student.semesters %}
+                    <div class="semester-card">
+                        <div>
+                            <h3>Semester {{ semester.number }}</h3>
+
+                            <p>
+                                {{ semester.subjects|length }} subjects
+                                . {{ semester.get_total_credits() }} credits
+                            </p>
+                        </div>
+                        
+                        <div class="semester-sgpa">
+                            <span>SGPA</span>
+                            <strong>
+                                {{ "%.2f"|format(semester.calculate_sgpa()) }}
+                            </strong>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
     
     {% else %}
         <h2>Welcome to GradeVault</h2>
