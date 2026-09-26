@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | GradeVault{% endblock %}
+{% block content %}
+    {% if student %}
+        <h2>Welcome, {{ student.name }}</h2>
+        <p>Roll Number: {{ student.roll_number }}</p>
+        <h3>Academic Overview</h3>
+        <p>
+            CGPA:
+            {{ "%.2f"|format(student.calculate_cgpa()) }}
+        </p>
+        <p>
+            Semesters Completed:
+            {{ student.semesters|length }}
+        </p>
+    
+    {% else %}
+        <h2>Welcome to GradeVault</h2>
+        <p>No student profile found.</p>
+    {% endif %}
+{% endblock %}

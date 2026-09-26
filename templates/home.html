@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GradeVault</title>
+    </head>
+
+    <body>
+
+        <h1>GradeVault</h1>
+
+        {% if student %}
+            <h2>{{ student.name }}</h2>
+            <p>Roll Number: {{ student.roll_number }}</p>
+            <p>CGPA: {{ "%.2f"|format(student.calculate_cgpa()) }}</p>
+            <p>Semesters Completed: {{ student.semesters|length }}</p>
+
+        {% else %}
+            <h2>No student found.</h2>
+            <p>Create a student to get started.</p>
+
+        {% endif %}
+    
+    </body>
+</html>
