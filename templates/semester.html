@@ -45,9 +45,19 @@
                 <span>{{ subject.obtained_marks }}</span>
                 <span>{{ subject.get_grade() }}</span>
                 <span>{{ subject.get_grade_point() }}</span>
-                <a href="/semester/{{ semester.number }}/edit-subject/{{ subject.name }}">
-                    Edit
-                </a>
+                <div class="subject-actions">
+                    <a href="/semester/{{ semester.number }}/edit-subject/{{ subject.name }}">
+                        Edit
+                    </a>
+
+                    <form
+                        action="/semester/{{ semester.number }}/delete-subject/{{ subject.name }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this subject?');"
+                    >
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         {% endfor %}
 

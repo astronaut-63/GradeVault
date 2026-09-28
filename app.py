@@ -112,6 +112,21 @@ def edit_subject(semester_number, subject_name):
         subject=subject
     )
 
+@app.route("/semester/<int:semester_number>/delete-subject/<subject_name>", methods=["POST"])
+def delete_subject(semester_number, subject_name):
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    try:
+        semester = student.find_semester(semester_number)
+        semester.remove_subject(subject_name)
+        save_student(student)
+        return redirect(f"/semester/{semester_number}")
+    except ValueError:
+        return "Subject not found.", 404
+
 def home():
     student = load_student()
 
