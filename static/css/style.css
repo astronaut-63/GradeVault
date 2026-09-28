@@ -126,43 +126,50 @@ body {
     font-size: 24px;
 }
 
-.semester_header {
+.semester-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 35px;
+    align-items: flex-start;
+    margin-bottom: 30px;
 }
 
-.semester_header p {
+.semester-header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.semester-header p {
     color: #6b7280;
-    margin-top: 6px;
+    margin: 3px 0;
 }
 
-.semester_summary {
+.semester-summary {
     display: flex;
-    gap: 40px;
+    gap: 30px;
 }
 
-.semester_summary div {
+.semester-summary div {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.semester_summary span {
+.semester-summary span {
     color: #6b7280;
     font-size: 13px;
 }
 
-.semester_summary strong {
+.semester-summary strong {
     font-size: 26px;
 }
 
-.subjects_section {
+.subjects-section {
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
-.subjects_section h2 {
+.subjects-section h2 {
+    font-size: 22px;
     margin-bottom: 15px;
 }
 
@@ -173,23 +180,27 @@ body {
     overflow: hidden;
 }
 
-.subject_row {
+.subject-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: minmax(250px, 2fr) 1fr 1fr 1fr 1fr;
+    align-items: center;
     padding: 16px 20px;
     border-bottom: 1px solid #e5e7eb;
+    column-gap: 20px;
 }
 
-.subject_row:last-child {
+.subject-row:last-child {
     border-bottom: none;
 }
 
-.subject_header {
-    font-weight: bold;
+.subject-header {
+    font-weight: 600;
     background: #f9fafb;
+    color: #6b7280;
+    font-size: 14px;
 }
 
-.back_link {
+.back-link {
     display: inline-block;
     margin-top: 10px;
     text-decoration: none;
@@ -202,7 +213,7 @@ body {
     align-items: center;
 }
 
-.add_button {
+.add-button {
     padding: 10px 16px;
     background: #1f2937;
     color: white;
