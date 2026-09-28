@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Edit Subject | GradeVault{% endblock %}
+{% block content %}
+<h2>Edit Subject</h2>
+{% if error %}
+    <p class="form-error">{{ error }}</p>
+{% endif %}
+<form method="POST">
+    <label for="name">Subject Name</label>
+    <input
+        type="text"
+        id="name"
+        name="name"
+        value="{{ subject.name }}"
+        required
+    >
+    
+    <label for="credits">Credits</label>
+    <input
+        type="number"
+        id="credits"
+        name="credits"
+        value="{ subject.credits }"
+        min="0"
+        required
+    >
+
+    <label for="obtained_marks">Marks</label>
+    <input
+        type="number"
+        id="obtained_marks"
+        name="obtained_marks"
+        value="{{ subject.obtained_marks }}"
+        min="0"
+        max="100"
+        required
+    >
+    
+    <button type="submit">Save Changes</button>
+    
+</form>
+
+<a href="/semester/{{ semester.number }}">Back to Semester</a>
+
+{% endblock %}

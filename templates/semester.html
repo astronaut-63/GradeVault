@@ -35,6 +35,7 @@
             <span>Marks</span>
             <span>Grade</span>
             <span>Grade Point</span>
+            <span>Action</span>
         </div>
 
         {% for subject in semester.subjects %}
@@ -44,6 +45,9 @@
                 <span>{{ subject.obtained_marks }}</span>
                 <span>{{ subject.get_grade() }}</span>
                 <span>{{ subject.get_grade_point() }}</span>
+                <a href="/semester/{{ semester.number }}/edit-subject/{{ subject.name }}">
+                    Edit
+                </a>
             </div>
         {% endfor %}
 

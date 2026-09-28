@@ -53,7 +53,7 @@ def add_subject(semester_number):
     if request.method == "POST":
         name = request.form["name"]
         credits = int(request.form["credits"])
-        obtained_marks = float(request.form["obtained_marks"])
+        obtained_marks = int(request.form["obtained_marks"])
 
         subject = Subject(
             name,
@@ -69,6 +69,47 @@ def add_subject(semester_number):
     return render_template(
         "add_subject.html",
         semester=semester
+    )
+
+@app.route("/semester/<int:semester_number>/edit-subject/<subject_name>", methods=["GET", "POST"])
+def edit_subject(semester_number, subject_name):
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    try:
+        semester = student.find_semester(semester_number)
+        subject = semester.find_subject(subject_name)
+    except ValueError:
+        return "Subject not found.", 404
+
+    if request.method == "POST":
+        try:
+            name = request.form["name"]
+            credits = int(request.form["credits"])
+            obtained_marks = int(request.form["obtained_marks"])
+
+            subject.update_name(name)
+            subject.update_credits(credits)
+            subject.update_obtained_marks(obtained_marks)
+
+            save_student(student)
+
+            return redirect(f"/semester/{semester_number}")
+
+        except ValueError as e:
+            return render_template(
+                "edit_subject.html",
+                semester=semester,
+                subject=subject,
+                error=str(e)
+            )
+
+    return render_template(
+        "edit_subject.html",
+        semester=semester,
+        subject=subject
     )
 
 def home():
