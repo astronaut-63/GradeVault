@@ -1,5 +1,6 @@
-from flask import Flask, render_template
-from storage import load_student
+from flask import Flask, render_template, request, redirect
+from storage import load_student, save_student
+from models.subject import Subject
 from analytics import get_academic_overview
 
 app = Flask(__name__)
@@ -35,6 +36,39 @@ def semester_details(semester_number):
         "semester.html",
         student = student,
         semester = semester
+    )
+
+@app.route("/semester/<int:semester_number>/add-subject", methods=["GET", "POST"])
+def add_subject(semester_number):
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    try:
+        semester = student.find_semester(semester_number)
+    except ValueError:
+        return "Semester not found.", 404
+
+    if request.method == "POST":
+        name = request.form["name"]
+        credits = int(request.form["credits"])
+        obtained_marks = float(request.form["obtained_marks"])
+
+        subject = Subject(
+            name,
+            credits,
+            obtained_marks
+        )
+
+        semester.add_subject(subject)
+        save_student(student)
+
+        return redirect(f"/semester/{semester_number}")
+
+    return render_template(
+        "add_subject.html",
+        semester=semester
     )
 
 def home():

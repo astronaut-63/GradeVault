@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Add Subject | GradeVault{% endblock %}
+{% block content %}
+<h2>Add Subject</h2>
+<form method="POST">
+    <label for="name">Subject Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="credits">Credits</label>
+    <input type="number" id="credits" name="credits" min="0" required>
+
+    <label for="obtained_marks">Marks</label>
+    <input
+        type="number"
+        id="obtained_marks"
+        name="obtained_marks"
+        min="0"
+        max="100"
+        step="0.01"
+        required
+    >
+
+    <button type="submit">Add Subject</button>
+
+</form>
+<a href="/semester/{{ semester.number }}">Back to Semester</a>
+{% endblock %}
