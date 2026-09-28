@@ -66,6 +66,6 @@ if __name__ == "__main__":
 
     if student:
         overview = get_academic_overview(student)
-        print(overview)
+        print(overview-0)
     else:
         print("No student found.")

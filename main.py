@@ -10,7 +10,7 @@ def menu():
     student = load_student()
 
     while True:
-        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Delete Subject\n8. Delete Semester\n9. Exit')
+        print('1. Create Student\n2. Add Semester\n3. Add Subject\n4. View Student\n5. View Semester\n6. Edit Subject\n7. Delete Subject\n8. Delete Semester\n9. Analytics\n10. Exit')
         try:
             choice = int(input('Enter your choice: '))
             if choice == 1:
@@ -145,8 +145,11 @@ def menu():
                     print(f'Semester {semester_number} removed successfully!')
                 except ValueError as e:
                     print(e)
-
             elif choice == 9:
+                print('1. SGPA Trend\n2. Marks by Subject\n3. Grade Distribution\n4. Average Marks by Semester\n5. Credits by Semester\n6. SGPA vs CGPA\n7. Back')
+                selection = input('Enter your choice: ')
+                
+            elif choice == 10:
                 print('Thank you!')
                 break
             else:
