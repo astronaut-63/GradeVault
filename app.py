@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from storage import load_student, save_student
+from models.semester import Semester
 from models.subject import Subject
 from analytics import get_academic_overview
 
@@ -126,6 +127,45 @@ def delete_subject(semester_number, subject_name):
         return redirect(f"/semester/{semester_number}")
     except ValueError:
         return "Subject not found.", 404
+
+@app.route("/add-semester", methods=["GET", "POST"])
+def add_semester():
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    if request.method == "POST":
+        try:
+            number = int(request.form["number"])
+
+            semester = Semester(number)
+
+            student.add_semester(semester)
+            save_student(student)
+
+            return redirect("/")
+        except ValueError as e:
+            return render_template(
+                "add_semester.html",
+                error=str(e)
+            )
+
+    return render_template("add_semester.html")
+
+@app.route("/delete-semester/<int:semester_number>", methods=["POST"])
+def delete_semester(semester_number):
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    try:
+        student.remove_semester(semester_number)
+        save_student(student)
+        return redirect("/")
+    except ValueError:
+        return "Semester not found.", 404
 
 def home():
     student = load_student()

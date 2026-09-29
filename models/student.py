@@ -24,10 +24,12 @@ class Student:
     def calculate_cgpa(self):
         numerator = 0
         denominator = 0
+
         for semester in self.semesters:
-            credits = semester.get_total_credits()
-            numerator += semester.calculate_sgpa() * credits
-            denominator += credits
+            if not semester.subjects:
+                continue
+            numerator += semester.calculate_sgpa() * semester.get_total_credits()
+            denominator += semester.get_total_credits()
         if denominator == 0:
             raise ValueError(
                 'Cannot calculate CGPA because no subjects have been added.')

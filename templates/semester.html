@@ -11,7 +11,13 @@
     <div class="semester-summary">
         <div>
             <span>SGPA</span>
-            <strong>{{ "%.2f"|format(semester.calculate_sgpa()) }}</strong>
+            <strong>
+                {% if semester.subjects %}
+                    {{ "%.2f"|format(semester.calculate_sgpa()) }}
+                {% else %}
+                    —
+                {% endif %}
+            </strong>
         </div>
 
         <div>

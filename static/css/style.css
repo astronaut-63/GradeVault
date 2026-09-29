@@ -89,18 +89,57 @@ body {
 }
 
 .semester-card {
+    flex: 1;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background: white;
-    padding: 22px 24px;
-
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    padding: 22px 60px 22px 24px;
 
     text-decoration: none;
     color: inherit;
+}
+
+.semester-card-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+}
+
+.semester-item {
+    display: flex;
+    position: relative;
+    align-items: center;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.delete-semester-form {
+    margin: 0;
+    padding: 0 16px 0 0;
+    max-width: none;
+    width: 24px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.delete-button {
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 6px;
+}
+
+.delete-button:hover {
+    color: #dc2626;
 }
 
 .semester-card h3 {

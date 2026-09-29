@@ -38,25 +38,15 @@ def get_credits_by_semesters(student):
     return df.groupby("Semester")["Credits"].sum()
 
 def get_academic_overview(student):
-    total_credits = 0;
+    total_credits = 0
 
     for semester in student.semesters:
         total_credits += semester.get_total_credits()
 
-    latest_sgpa = None
-
-    if student.semesters:
-        latest_semester = max(
-            student.semesters,
-            key=lambda semester: semester.number
-        )
-        latest_sgpa = latest_semester.calculate_sgpa()
-
     return {
         "CGPA": student.calculate_cgpa(),
-        "Latest SGPA": latest_sgpa,
         "Total Credits": total_credits,
-        "Semesters Completed": len(student.semesters)
+        "Semesters": len(student.semesters)
     }
 
 if __name__ == "__main__":

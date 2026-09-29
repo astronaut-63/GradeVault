@@ -17,8 +17,13 @@
             </div>
 
             <div class="stat-card">
+                <p>Total Credits</p>
+                <h3>{{ overview["Total Credits"] }}</h3>
+            </div>
+
+            <div class="stat-card">
                 <p>Semesters</p>
-                <h3>{{ overview["Semesters Completed"] }}</h3>
+                <h3>{{ overview["Semesters"] }}</h3>
             </div>
 
         </section>
@@ -27,29 +32,51 @@
 
             <div class="section-header">
                 <h2>Your Semesters</h2>
+                <a href="/add-semester" class="add-button">Add Semester</a>
             </div>
 
             <div class="semester-grid">
-                {% for semester in student.semesters %}
-                    <a href="/semester/{{ semester.number }}" class="semester-card">
-                        <div>
-                            <h3>Semester {{ semester.number }}</h3>
 
-                            <p>
-                                {{ semester.subjects|length }} subjects
-                                . {{ semester.get_total_credits() }} credits
-                            </p>
-                        </div>
-                        
-                        <div class="semester-sgpa">
-                            <span>SGPA</span>
-                            <strong>
-                                {{ "%.2f"|format(semester.calculate_sgpa()) }}
-                            </strong>
-                        </div>
+                {% for semester in student.semesters %}
+
+                    <div class="semester-item">
+
+                        <a href="/semester/{{ semester.number }}" class="semester-card">
+
+                            <div>
+                                <h3>Semester {{ semester.number }}</h3>
+                                <p>
+                                    {{ semester.subjects|length }} subjects
+                                    · {{ semester.get_total_credits() }} credits
+                                </p>
+                            </div>
+
+                            <div class="semester-sgpa">
+                                <span>SGPA</span>
+                                <strong>
+                                    {% if semester.subjects %}
+                                        {{ "%.2f"|format(semester.calculate_sgpa()) }}
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </strong>
+                            </div>
+
+                        </a>
+
+                        <form
+                            action="/delete-semester/{{ semester.number }}"
+                            method="POST"
+                            class="delete-semester-form"
+                            onsubmit="return confirm('Are you sure you want to delete this semester?');"
+                        >
+                            <button type="submit" class="delete-button">×</button>
+                        </form>
 
                     </div>
+
                 {% endfor %}
+
             </div>
         </section>
     
