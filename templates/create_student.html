@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Create Student | GradeVault{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Create Student Profile</h2>
+        <p>Set up your academic profile to start using GradeVault.</p>
+    </div>
+</div>
+
+<div class="form-card">
+    {% if error %}
+        <p class="form-error">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+        >
+        
+        <label for="roll_number">Roll Number</label>
+        <input
+            type="text"
+            id="roll_number"
+            name="roll_number"
+            required
+        >
+
+        <button type="submit">Create Profile</button>
+    </form>
+</div>
+{% endblock %}

@@ -13,7 +13,13 @@
 
             <div class="stat-card">
                 <p>CGPA</p>
-                <h3>{{ "%.2f"|format(overview["CGPA"]) }}</h3>
+                <h3>
+                    {% if overview["CGPA"] is not none %}
+                        {{ "%.2f"|format(overview["CGPA"]) }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </h3>
             </div>
 
             <div class="stat-card">
@@ -81,7 +87,13 @@
         </section>
     
     {% else %}
-        <h2>Welcome to GradeVault</h2>
-        <p>No student profile found.</p>
+        <div class="empty-state">
+            <h2>Welcome to GradeVault!</h2>
+            <p>Create your student profile to get started.</p>
+
+            <a href="/create-student" class="add-button">
+                Create Student Profile
+            </a>
+        </div>
     {% endif %}
 {% endblock %}

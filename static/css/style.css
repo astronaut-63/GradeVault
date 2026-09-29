@@ -299,3 +299,16 @@ form button {
     color: #dc2626;
     margin-bottom: 15px;
 }
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state h2 {
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    margin-bottom: 24px;
+}

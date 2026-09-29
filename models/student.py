@@ -31,8 +31,8 @@ class Student:
             numerator += semester.calculate_sgpa() * semester.get_total_credits()
             denominator += semester.get_total_credits()
         if denominator == 0:
-            raise ValueError(
-                'Cannot calculate CGPA because no subjects have been added.')
+            return None
+        
         return numerator/denominator
 
     def remove_semester(self, number):

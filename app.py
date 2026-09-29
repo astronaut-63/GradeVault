@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from storage import load_student, save_student
 from models.semester import Semester
 from models.subject import Subject
+from models.student import Student
 from analytics import get_academic_overview
 
 app = Flask(__name__)
@@ -167,6 +168,26 @@ def delete_semester(semester_number):
     except ValueError:
         return "Semester not found.", 404
 
+@app.route("/create-student/", methods=["GET", "POST"])
+def create_student():
+    if request.method == "POST":
+        try:
+            name = request.form["name"]
+            roll_number = request.form["roll_number"]
+
+            student = Student(name, roll_number)
+            save_student(student)
+
+            return redirect("/")
+
+        except ValueError as e:
+            return render_template(
+                "create_student.html",
+                error=str(e)
+            )
+
+    return render_template("create_student.html")
+    
 def home():
     student = load_student()
 
