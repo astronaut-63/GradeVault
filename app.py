@@ -187,7 +187,38 @@ def create_student():
             )
 
     return render_template("create_student.html")
-    
+
+@app.route("/edit-student", methods=["GET", "POST"])
+def edit_student():
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    if request.method == "POST":
+        try:
+            name = request.form["name"]
+            roll_number = request.form["roll_number"]
+
+            student.update_name(name)
+            student.update_roll_number(roll_number)
+
+            save_student(student)
+
+            return redirect("/")
+
+        except ValueError as e:
+            return render_template(
+                "edit_student.html",
+                student=student,
+                error=str(e)
+            )
+
+    return render_template(
+        "edit_student.html",
+        student=student
+    )
+
 def home():
     student = load_student()
 

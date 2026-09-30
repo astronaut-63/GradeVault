@@ -8,6 +8,10 @@ class Student:
         self.name = name
         self.roll_number = roll_number
 
+    def _validate_name(self, name):
+        if not name.strip():
+            raise ValueError("Enter a valid name.")
+
     def add_semester(self, new_semester):
         for existing_semester in self.semesters:
             if new_semester.number == existing_semester.number:
@@ -48,6 +52,16 @@ class Student:
             "roll_number": self.roll_number,
             "semesters": semester_list
         }
+
+    def update_name(self, new_name):
+        self._validate_name(new_name)
+        self.name = new_name
+
+    def update_roll_number(self, new_roll_number):
+        if not new_roll_number.strip():
+            raise ValueError("Enter a valid roll number.")
+
+        self.roll_number = new_roll_number
 
     @classmethod
     def from_dict(cls, data):
