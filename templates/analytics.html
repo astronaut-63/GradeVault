@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Analytics | GradeVault{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Academic Analytics</h2>
+        <p>Track your academic performance across semesters.</p>
+    </div>
+</div>
+
+<div class="analytics-grid">
+
+    <div class="chart-card">
+        <h3>SGPA Trend</h3>
+        <div id="sgpa-chart"></div>
+    </div>
+
+    <div class="chart-chard">
+        <h3>Grade Distribution</h3>
+        <div id="grade-chart"></div>
+    </div>
+
+</div>
+
+<div class="chart-card">
+    <h3>Subject Performance</h3>
+    <div id="subject-chart"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script id="sgpa-data" type="application/json">
+    {{ sgpa_data | tojson }}
+</script>
+
+<script>
+    const sgpaData = JSON.parse(
+        document.getElementById("sgpa-data").textContent
+    );
+
+    const sgpaLabels = sgpaData.map(item => `Semester ${item.Semester}`);
+    const sgpaValues = sgpaData.map(item => item.SGPA);
+
+    const sgpaCanvas = document.createElement("canvas");
+    document.getElementById("sgpa-chart").appendChild(sgpaCanvas);
+
+    new Chart(sgpaCanvas, {
+        type: "line",
+        data: {
+            labels: sgpaLabels,
+            datasets: [{
+                label: "SGPA",
+                data: sgpaValues,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 10
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

@@ -20,6 +20,9 @@ def get_sgpa_data(student):
     rows = []
 
     for semester in student.semesters:
+        if not semester.subjects:
+            continue
+
         rows.append({
             "Semester": semester.number,
             "SGPA": semester.calculate_sgpa()
@@ -56,6 +59,6 @@ if __name__ == "__main__":
 
     if student:
         overview = get_academic_overview(student)
-        print(overview-0)
+        print(overview)
     else:
         print("No student found.")

@@ -219,6 +219,31 @@ def edit_student():
         student=student
     )
 
+@app.route("/analytics")
+def analytics():
+    student = load_student()
+
+    if student is None:
+        return "No student found.", 404
+
+    from analytics import (
+        get_sgpa_data,
+        get_grade_distribution,
+        get_subject_data
+    )
+
+    sgpa_data = get_sgpa_data(student).to_dict(orient="records")
+    grade_distribution = get_grade_distribution(student)
+    subject_data = get_subject_data(student)
+
+    return render_template(
+        "analytics.html",
+        student=student,
+        sgpa_data=sgpa_data,
+        grade_distribution=grade_distribution,
+        subject_data=subject_data
+    )
+
 def home():
     student = load_student()
 
