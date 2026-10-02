@@ -1,8 +1,10 @@
 # GradeVault
 
-GradeVault is a personal academic performance tracker built with Python and Flask.
+> A personal academic performance tracker built with Python and Flask.
 
-It allows students to manage their academic records, calculate SGPA/CGPA, and view their performance through a web-based dashboard.
+GradeVault helps students manage their academic records, calculate SGPA and CGPA, and visualize their performance through a web-based dashboard.
+
+Built as a learning project while exploring Python, Flask, OOP, data analysis, web development, and Git.
 
 ## Features
 
